@@ -4,5 +4,8 @@ namespace Khoanguyen\Excel\Function\ImportAble;
 
 interface ImportAbleInterface
 {
-    public function import();
+    /**
+     * @return mixed
+     */
+    public function import(): mixed;
 }

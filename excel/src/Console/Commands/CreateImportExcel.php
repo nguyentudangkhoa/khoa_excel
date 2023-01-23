@@ -22,11 +22,12 @@ class CreateImportExcel extends Command
 
     /**
      * Execute the console command.
+     *
      * @return mixed
      */
     public function handle()
     {
-        $path = app_path() . '/Excel/Import/';
+        $path = app_path().'/Excel/Import/';
         $fileName = ucfirst($this->argument('import_file'));
         if (! is_dir($path)) {
             mkdir($path, 0777, true);
@@ -35,15 +36,17 @@ class CreateImportExcel extends Command
         if (file_exists($path . $this->argument('import_file') . '.php')) {
             $this->error(__('Class name :file_name is exist !!!!', ['file_name' => $fileName]));
         } else {
-            $phpFile = str_contains($fileName, '.php') ? $fileName : $fileName . '.php';
-            $myFile = fopen($path . $phpFile , "w") or die("Unable to open file!");
+            $phpFile = str_contains($fileName, '.php') ? $fileName : $fileName.'.php';
+            $myFile = fopen($path . $phpFile, 'w') or exit('Unable to open file!');
 
             $content = '';
             $content .= "<?php\n";
             $content .= "\nnamespace App\Excel\Import;\n";
             $content .= "\nuse Khoanguyen\Excel\Function\ImportAble\ImportAble;\n";
-            $content .= "\nclass $fileName extends ImportAble";
-            $content .= "\n{\n\tpublic function __construct()\n\t{\n\t}\n}\n";
+            $content .= "\nuse Khoanguyen\Excel\ImportInterface\ImportInterface;\n";
+            $content .= "\nclass $fileName extends ImportAble implements ImportInterface";
+            $content .= "\n{\n\tpublic function __construct(" . '$model, $data=[]' . ")\n\t{\n\t\t" . 'parent::__construct($model, $data);' . "\n\t}\n";
+            $content .= "\n\tpublic function saveData()\n\t{\n\t\treturn " . '$this->import();' . "\n\t}\n}\n";
 
             fwrite($myFile, $content);
             fclose($myFile);
