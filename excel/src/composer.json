@@ -21,7 +21,10 @@
         "laravel": {
             "providers": [
                 "Khoanguyen\\Excel\\TodolistServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Excel": "Khoanguyen\\Excel\\Support\\ExcelFacade"
+            }
         }
     }
 }

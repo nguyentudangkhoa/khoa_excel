@@ -15,4 +15,9 @@ class Excel
         $instance = new $class($table, $data);
         return $instance->saveData();
     }
+
+    public function test()
+    {
+        dd('asdasd');
+    }
 }

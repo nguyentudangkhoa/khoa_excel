@@ -2,11 +2,9 @@
 
 namespace Khoanguyen\Excel;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Khoanguyen\Excel\Console\Commands\CreateImportExcel;
 use Khoanguyen\Excel\Facade\Excel;
-use Khoanguyen\Excel\Support\ExcelFacade;
 
 class ExcelServiceProvider extends ServiceProvider
 {
@@ -24,10 +22,6 @@ class ExcelServiceProvider extends ServiceProvider
         $this->commands([
             CreateImportExcel::class,
         ]);
-
-        $alias = AliasLoader::getInstance();
-
-        $alias->alias('Excel', ExcelFacade::class);
     }
 
     /**
