@@ -12,6 +12,7 @@ class Excel
      */
     public function importExcel($class, $table, $data = [])
     {
-        return new $class($table, $data);
+        $instance = new $class($table, $data);
+        return $instance->saveData();
     }
 }

@@ -7,5 +7,5 @@ interface ImportAbleInterface
     /**
      * @return mixed
      */
-    public function import(): mixed;
+    public function import();
 }

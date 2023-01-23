@@ -69,7 +69,7 @@ class ComposerStaticInit00f47ed4c642d0e122b7fb1c88bce311
         ),
         'Khoanguyen\\Excel\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/packages/khoa/excel/src',
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Complex\\' => 
         array (
