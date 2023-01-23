@@ -1,0 +1,27 @@
+{
+    "name": "khoanguyen/export-excel",
+    "description": "Export excel packages",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Khoanguyen\\Excel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "khoanguyen",
+            "email": "nguyentudangkhoa@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "phpoffice/phpspreadsheet": "dev-master"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Khoanguyen\\Excel\\TodolistServiceProvider"
+            ]
+        }
+    }
+}
