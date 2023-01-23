@@ -13,6 +13,6 @@ class ImportAble implements ImportAbleInterface
 
     public function import()
     {
-
+        return $this->model->create($this->data);
     }
 }
