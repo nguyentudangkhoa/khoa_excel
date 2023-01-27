@@ -1,8 +1,8 @@
 <?php
 
-namespace Khoanguyen\Excel\Function\ImportAble;
+namespace Khoanguyen\Excel\Function\Importable;
 
-interface ImportAbleInterface
+interface ImportableInterface
 {
     /**
      * @return mixed

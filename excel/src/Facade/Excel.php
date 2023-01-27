@@ -7,17 +7,12 @@ class Excel
     /**
      * @param $class
      * @param $table
-     * @param  array  $data
+     * @param  $file
      * @return mixed
      */
-    public function importExcel($class, $table, $data = [])
+    public function importExcel($class, $table, $file)
     {
-        $instance = new $class($table, $data);
+        $instance = new $class($table, $file);
         return $instance->saveData();
-    }
-
-    public function test()
-    {
-        dd('asdasd');
     }
 }
