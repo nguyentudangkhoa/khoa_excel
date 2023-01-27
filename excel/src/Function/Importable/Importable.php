@@ -26,23 +26,27 @@ class Importable implements ImportableInterface
         if (($handle = fopen($url, "r")) !== false) {
             $headers = fgetcsv($handle, null, ";");
             $columns = [];
-            while (($data = fgetcsv($handle, null, ";")) !== FALSE) {
-                for ($c=0; $c < count($data); $c++) {
-                    array_push($columns, $data);
-                }
+            while (($row = fgetcsv($handle, null, ";")) !== FALSE) {
+                $csv[$i] = array_combine($headers, $row);
 
                 $i++;
             }
 
-            foreach ($columns as $column) {
-                for ($headerNumber = 0; $headerNumber < count($headers); $headerNumber++) {
-                    $csv[$headers[$headerNumber]][]= $column[$headerNumber] ?: '-';
+            fclose($handle);
+        }
+
+        try {
+            $data = array_chunk($csv, 100);
+            foreach ($data as $items) {
+                foreach ($items as $item) {
+                    $this->model->create($item);
                 }
             }
 
-            fclose($handle);
+            Storage::delete($url);
+            return true;
+        } catch (\Exception $e) {
+            return false;
         }
-        dd($csv);
-        return $this->model->create($this->file);
     }
 }
