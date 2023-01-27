@@ -2,6 +2,7 @@
 
 namespace Khoanguyen\Excel\Function\Importable;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class Importable implements ImportableInterface
@@ -25,7 +26,6 @@ class Importable implements ImportableInterface
         $i = 1;
         if (($handle = fopen($url, "r")) !== false) {
             $headers = fgetcsv($handle, null, ";");
-            $columns = [];
             while (($row = fgetcsv($handle, null, ";")) !== FALSE) {
                 $csv[$i] = array_combine($headers, $row);
 
@@ -46,6 +46,7 @@ class Importable implements ImportableInterface
             Storage::delete($url);
             return true;
         } catch (\Exception $e) {
+            Log::info(e);
             return false;
         }
     }
