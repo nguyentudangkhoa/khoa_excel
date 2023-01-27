@@ -45,7 +45,7 @@ class CreateImportExcel extends Command
             $content .= "\nuse Khoanguyen\Excel\Function\Importable\Importable;\n";
             $content .= "\nuse Khoanguyen\Excel\ImportInterface\ImportInterface;\n";
             $content .= "\nclass $fileName extends Importable implements ImportInterface";
-            $content .= "\n{\n\tpublic function __construct(" . '$model, $file' . ")\n\t{\n\t\t" . 'parent::__construct($model, $data);' . "\n\t}\n";
+            $content .= "\n{\n\tpublic function __construct(" . '$model, $file' . ")\n\t{\n\t\t" . 'parent::__construct($model, $file);' . "\n\t}\n";
             $content .= "\n\tpublic function saveData()\n\t{\n\t\treturn " . '$this->import();' . "\n\t}\n}\n";
 
             fwrite($myFile, $content);

@@ -10,7 +10,7 @@ class Excel
      * @param  $file
      * @return mixed
      */
-    public function importExcel($class, $table, $file)
+    public function importExcel($class, $table, $file): mixed
     {
         $instance = new $class($table, $file);
         return $instance->saveData();

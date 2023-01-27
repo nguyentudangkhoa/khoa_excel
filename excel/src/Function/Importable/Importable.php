@@ -24,6 +24,7 @@ class Importable implements ImportableInterface
         $url = storage_path('/app/public/' . time() . '.' . $this->file->getClientOriginalExtension());
         $csv = [];
         $i = 1;
+
         if (($handle = fopen($url, "r")) !== false) {
             $headers = fgetcsv($handle, null, ";");
             while (($row = fgetcsv($handle, null, ";")) !== FALSE) {
@@ -39,14 +40,14 @@ class Importable implements ImportableInterface
             $data = array_chunk($csv, 100);
             foreach ($data as $items) {
                 foreach ($items as $item) {
-                    $this->model->create($item);
+                    $this->model->insert($item);
                 }
             }
 
-            Storage::delete($url);
+            unlink($url);
             return true;
         } catch (\Exception $e) {
-            Log::info(e);
+            Log::info($e);
             return false;
         }
     }
